@@ -74,8 +74,8 @@ const AppContent = () => {
       <div className="doodly-element doodly-pencil"></div>
       
       <header className="todo-header">
-        <h1>StudySmart</h1>
-        <p>Organize your studies and boost your productivity</p>
+        <h1>TickTrack</h1>
+        <p>Organize your tasks and boost your productivity</p>
       </header>
       
       {/* Completion statistics display */}
