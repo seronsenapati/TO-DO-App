@@ -27,12 +27,61 @@ const StorageEventHandler = () => {
   return null;
 };
 
+// Confetti piece component
+const ConfettiPiece = ({ style }) => (
+  <div className="confetti-piece" style={style}></div>
+);
+
+// Fireworks/Confetti celebration component for 100% completion
+const Celebration = () => {
+  const confettiPieces = Array.from({ length: 150 }, (_, i) => ({
+    id: i,
+    left: `${Math.random() * 100}%`,
+    top: `${Math.random() * 100}%`,
+    width: `${Math.random() * 10 + 5}px`,
+    height: `${Math.random() * 10 + 5}px`,
+    backgroundColor: [
+      '#ff0000', '#00ff00', '#0000ff', '#ffff00', 
+      '#ff00ff', '#00ffff', '#ff8000', '#ff0080'
+    ][Math.floor(Math.random() * 8)],
+    animationDelay: `${Math.random() * 5}s`,
+    animationDuration: `${Math.random() * 3 + 2}s`,
+    transform: `rotate(${Math.random() * 360}deg)`
+  }));
+
+  return (
+    <div className="celebration-overlay">
+      {confettiPieces.map(piece => (
+        <ConfettiPiece 
+          key={piece.id}
+          style={{
+            position: 'fixed',
+            left: piece.left,
+            top: piece.top,
+            width: piece.width,
+            height: piece.height,
+            backgroundColor: piece.backgroundColor,
+            animationDelay: piece.animationDelay,
+            animationDuration: piece.animationDuration,
+            transform: piece.transform,
+            zIndex: 1000,
+            pointerEvents: 'none'
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
 const AppContent = () => {
   const { theme, toggleTheme } = useTheme();
   const todoCounts = useSelector(selectTodoCounts);
   const completionPercentage = todoCounts.total > 0 
     ? Math.round((todoCounts.completed / todoCounts.total) * 100) 
     : 0;
+
+  // Show celebration when 100% completion is reached
+  const showCelebration = completionPercentage === 100 && todoCounts.total > 0;
 
   return (
     <div className="todo-container">
@@ -58,6 +107,9 @@ const AppContent = () => {
           </svg>
         )}
       </button>
+      
+      {/* Celebration effect for 100% completion */}
+      {showCelebration && <Celebration />}
       
       {/* Doodly decorative elements */}
       <div className="doodly-element doodly-book-1"></div>
@@ -100,6 +152,13 @@ const AppContent = () => {
         <TodoList />
         <StorageEventHandler />
       </main>
+      
+      {/* Footer */}
+      <footer className="mt-8 text-center opacity-80">
+        <p className="font-bold text-base">
+          Made with <span className="text-red-500">❤</span> by Seron
+        </p>
+      </footer>
     </div>
   );
 };

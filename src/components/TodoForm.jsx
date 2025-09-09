@@ -44,9 +44,9 @@ const TodoForm = () => {
           aria-label="Priority level"
           className="priority-select"
         >
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
+          <option value="low">Low - For less important tasks</option>
+          <option value="medium">Medium - For moderately important tasks</option>
+          <option value="high">High - For urgent or critical tasks</option>
         </select>
         <button type="submit" className="add-button">
           Add

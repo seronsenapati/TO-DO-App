@@ -53,6 +53,33 @@ body {
   position: relative;
 }
 
+/* Confetti animation for 100% completion */
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.confetti-piece {
+  animation: confetti-fall 5s ease-in-out forwards;
+  border-radius: 2px;
+}
+
+.celebration-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+}
+
 /* Animated background elements */
 body::before,
 body::after {
@@ -536,11 +563,11 @@ body .doodly-element {
 
 /* Custom component classes */
 .todo-container {
-  @apply max-w-3xl mx-auto p-4 relative;
+  @apply max-w-3xl mx-auto p-4 relative flex flex-col min-h-screen;
 }
 
 .todo-header {
-  @apply text-center mb-8;
+  @apply text-center mb-8 flex-shrink-0;
 }
 
 .todo-header h1 {
@@ -557,7 +584,7 @@ body .doodly-element {
 .completion-stats {
   background: var(--stats-bg);
   backdrop-filter: blur(10px);
-  @apply rounded-xl p-4 mb-6 text-white shadow-lg;
+  @apply rounded-xl p-4 mb-6 text-white shadow-lg flex-shrink-0;
 }
 
 .completion-percentage {
@@ -582,7 +609,7 @@ body .doodly-element {
 
 .todo-form {
   background: var(--card-bg);
-  @apply mb-8 p-6 rounded-xl shadow-xl transition-all duration-200 hover:shadow-2xl hover:-translate-y-0.5;
+  @apply mb-8 p-6 rounded-xl shadow-xl transition-all duration-200 hover:shadow-2xl hover:-translate-y-0.5 flex-shrink-0;
   border: 1px solid var(--border-color);
 }
 
@@ -629,7 +656,7 @@ body .doodly-element {
 
 .todo-filters {
   background: var(--card-bg);
-  @apply flex justify-between items-center mb-6 p-5 rounded-xl shadow-lg flex-wrap gap-4;
+  @apply flex justify-between items-center mb-6 p-5 rounded-xl shadow-lg flex-wrap gap-4 flex-shrink-0;
   border: 1px solid var(--border-color);
 }
 
@@ -676,7 +703,7 @@ body .doodly-element {
 }
 
 .todo-list {
-  @apply list-none p-0;
+  @apply list-none p-0 flex-grow;
 }
 
 .todo-item {
@@ -852,7 +879,7 @@ body .doodly-element {
   }
   
   .todo-container {
-    @apply p-2;
+    @apply p-2 flex flex-col min-h-screen;
   }
   
   .todo-header h1 {
