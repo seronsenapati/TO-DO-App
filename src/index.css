@@ -22,6 +22,27 @@ body {
   @apply text-lg text-white/90;
 }
 
+/* Completion percentage display */
+.completion-stats {
+  @apply bg-white/20 backdrop-blur-sm rounded-xl p-4 mb-6 text-white shadow-lg;
+}
+
+.completion-percentage {
+  @apply text-3xl font-bold mb-2;
+}
+
+.completion-bar-container {
+  @apply w-full bg-white/30 rounded-full h-4 mb-2;
+}
+
+.completion-bar {
+  @apply bg-white rounded-full h-4 transition-all duration-500 ease-out;
+}
+
+.completion-text {
+  @apply text-sm opacity-90;
+}
+
 .todo-form {
   @apply mb-8 p-6 bg-white rounded-xl shadow-xl transition-all duration-200 hover:shadow-2xl hover:-translate-y-0.5;
 }
@@ -106,8 +127,21 @@ body {
   @apply flex items-center gap-4 mb-4 relative z-10;
 }
 
-.todo-checkbox {
-  @apply w-5 h-5 cursor-pointer text-blue-500 scale-100 transition-transform duration-200 hover:scale-110;
+/* Custom styled checkbox - larger and more rounded */
+.custom-checkbox-container {
+  @apply cursor-pointer w-8 h-8 flex items-center justify-center;
+}
+
+.custom-checkbox {
+  @apply w-7 h-7 border-2 border-gray-300 rounded-xl transition-all duration-200 flex items-center justify-center;
+}
+
+.custom-checkbox.checked {
+  @apply bg-gradient-to-r from-blue-500 to-purple-600 border-transparent;
+}
+
+.checkmark {
+  @apply w-5 h-5;
 }
 
 .todo-text-container {
@@ -266,5 +300,22 @@ body {
   
   .todo-text {
     @apply text-base;
+  }
+  
+  .completion-percentage {
+    @apply text-2xl;
+  }
+  
+  /* Adjust checkbox size for smaller screens */
+  .custom-checkbox-container {
+    @apply w-7 h-7;
+  }
+  
+  .custom-checkbox {
+    @apply w-6 h-6;
+  }
+  
+  .checkmark {
+    @apply w-4 h-4;
   }
 }

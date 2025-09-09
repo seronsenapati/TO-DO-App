@@ -64,13 +64,16 @@ const TodoItem = ({ todo }) => {
   return (
     <li className={`todo-item ${todo.completed ? 'completed' : ''}`}>
       <div className="todo-content">
-        <input
-          type="checkbox"
-          checked={todo.completed}
-          onChange={handleToggleComplete}
-          aria-label={`Mark "${todo.text}" as ${todo.completed ? 'incomplete' : 'complete'}`}
-          className="todo-checkbox"
-        />
+        {/* Enhanced checkbox with custom styling - larger and more rounded */}
+        <div className="custom-checkbox-container" onClick={handleToggleComplete}>
+          <div className={`custom-checkbox ${todo.completed ? 'checked' : ''}`}>
+            {todo.completed && (
+              <svg className="checkmark" viewBox="0 0 24 24">
+                <path d="M5 13l4 4L19 7" fill="none" stroke="white" strokeWidth="3"/>
+              </svg>
+            )}
+          </div>
+        </div>
         
         {isEditing ? (
           <div className="edit-form">
